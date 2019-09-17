@@ -4,8 +4,6 @@ import {NavLink} from "react-router-dom"
 function SavedList (props){
 
 
-  
-
 
   return(
   <div className="saved-list">
@@ -13,10 +11,9 @@ function SavedList (props){
     {props.list.map(movie => (
       <span className="saved-movie">{movie.title}</span>
     ))}
-    <nav>
+    { <nav>
       <NavLink className="home-button" to="/"> Home </NavLink>
-      </nav>
-    {/* <button className="home-button" onClick={backHome}>Home</button> */}
+      </nav> }
   </div>
   )
 };

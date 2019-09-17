@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import MovieCard from './MovieCard'
 
 const Movie = (props) => {
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState();
   // console.log(props)
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const Movie = (props) => {
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
       .then(response => {
-        console.log(response.data.stars)
+        console.log(response.data)
         setMovie(response.data);
       })
       .catch(error => {
@@ -32,29 +33,11 @@ const Movie = (props) => {
     return <div>Loading movie information...</div>;
   }
 
-
-console.log(movie.stars)
-
+  
 
   return (
     <div className="save-wrapper">
-      <div className="movie-card">
-        <h2>{movie.title}</h2>
-        <div className="movie-director">
-          Director: <em>{movie.director}</em>
-        </div>
-        <div className="movie-metascore">
-          Metascore: <strong>{movie.metascore}</strong>
-        </div>
-        <h3>Actors</h3>
-        <p className="movie-star">{movie.stars} </p>
-
-        {
-          movie.stars.map(item => 
-            <div key={item} className="movie-star">{item}</div>
-          )
-        } 
-      </div>
+    <MovieCard movie={movie} />
       <div className="save-button">Save</div>
     </div>
   );
